@@ -28,6 +28,20 @@ def create_otp_for_user(db:Session, otp:schema.OTPData):
     db.commit()
     db.refresh(db_otp)
     return db_otp
+
+def create_new_property(db:Session, property:schema.PropertyBase, imgurl, agent_id):
+    db_property = models.Property(agent_id=agent_id, thumbnail=imgurl, **property.dict())
+    db.add(db_property)
+    db.commit()
+    db.refresh(db_property)
+    return db_property
+
+def add_image_to_property(db:Session, property_id, imgUrl):
+    db_property_image = models.PropertyImages(property_id=property_id, img_url=imgUrl)
+    db.add(db_property_image)
+    db.commit()
+    db.refresh(db_property_image)
+    return db_property_image
     
 
 

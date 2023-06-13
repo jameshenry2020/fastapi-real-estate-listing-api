@@ -1,7 +1,7 @@
 from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
-from fastapi import APIRouter, Response, status, Depends, HTTPException, File, UploadFile
-from .. import schema, sql_query, util, jwt_auth, models
+from fastapi import APIRouter,  status, Depends, HTTPException, File, UploadFile
+from .. import schema, sql_query,  jwt_auth, models
 from ..database import get_db
 from sqlalchemy.orm import Session
 from typing import List

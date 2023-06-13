@@ -88,7 +88,7 @@ async def verify_email(otp:schema.OneTimePassword,response: Response, db:Session
 
 
 @router.post('/login', status_code=status.HTTP_200_OK)
-async def login(credentials:OAuth2PasswordRequestForm = Depends(), db:Session = Depends(get_db)):
+async def jwt_token_authentication(credentials:OAuth2PasswordRequestForm = Depends(), db:Session = Depends(get_db)):
     user=sql_query.check_user_exist(db, email=credentials.username)
     if not user:
         raise HTTPException(status_code=status.HTTP_403_FORBIDDEN, detail=f"invalid credentials")
